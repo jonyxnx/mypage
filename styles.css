@@ -131,6 +131,10 @@ body {
 }
 .section:last-of-type { border-bottom: none; }
 
+#about {
+  margin-top: 48vh;
+}
+
 .section-head {
   display: flex;
   align-items: baseline;
