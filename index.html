@@ -28,13 +28,16 @@
   <a href="https://linkedin.com/in/jonathan123" target="_blank" rel="noopener" aria-label="LinkedIn">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
   </a>
+  <a href="https://leetcode.com/u/Jonathanxd/" target="_blank" rel="noopener" aria-label="LeetCode">
+    <svg viewBox="-2 -1 28 28" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+  </a>
 </div>
 
 <div class="layout">
   <main class="content" id="content">
 
     <section id="top" class="hero">
-      <h1>Hi, I'm Jonathan.</h1>
+      <h1>Im jonathan:)</h1>
     </section>
 
     <section id="about" class="section">
@@ -43,8 +46,8 @@
         <h2>About</h2>
       </div>
       <div class="bio">
-        <p>I'm a software engineer interested in the intersection of good tooling and clear thinking. This site is where I keep a running log of projects I'm building and things I'm learning along the way.</p>
-        <p>When I'm not writing code, I'm probably reading about it, arguing with it, or trying to convince it to do what I meant instead of what I said.</p>
+        <p>im a software engineer interested in the intersection of good tooling and clear thinking. this site is where i keep a running log of projects im building and things im learning along the way.</p>
+        <p>when im not writing code, im probably reading about it, arguing with it, or trying to convince it to do what i meant instead of what i said. outside of that, im usually reading, watching movies, or hanging out with my friends.</p>
       </div>
     </section>
 
@@ -143,6 +146,7 @@
   // a small stagger so 01 moves first, then 02, then 03.
   const socialDock = document.getElementById('socialDock');
   const content = document.getElementById('content');
+  const hero = document.getElementById('top');
   const itemEls = Array.from(document.querySelectorAll('.index-list li'));
   const STAGGER = 0.06;
   const isDesktop = () => window.innerWidth > 860;
@@ -172,6 +176,7 @@
       itemEls.forEach(el => { el.style.transform = ''; });
       socialDock.style.opacity = '';
       content.style.marginLeft = '';
+      hero.style.transform = '';
       document.documentElement.style.setProperty('--p', 1);
       return;
     }
@@ -189,7 +194,12 @@
       el.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${scale})`;
     });
 
-    content.style.marginLeft = (260 * p) + 'px';
+    const marginLeft = 260 * p;
+    content.style.marginLeft = marginLeft + 'px';
+    // counter the content shift so the hero title stays put
+    // content's width shrinks by marginLeft too, so its centered contents
+    // only drift by half that amount
+    hero.style.transform = `translateX(${-marginLeft / 2}px)`;
     // socials only fade in once the index has (mostly) docked
     socialDock.style.opacity = p < 0.85 ? 0 : (p - 0.85) / 0.15;
   }
